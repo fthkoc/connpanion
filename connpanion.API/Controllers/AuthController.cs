@@ -43,6 +43,15 @@ namespace connpanion.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserDTOForLogin userDTOForLogin) 
         {
+            // try
+            // {
+            //    throw new Exception("Stop! Hammer time.");
+            // }
+            // catch (System.Exception)
+            // {
+            //     return StatusCode(500, "MC Hammer says you can not touch this!");
+            // }
+
             var userFromRepository = await _authRepository.Login(userDTOForLogin.UserName.ToLower(), userDTOForLogin.Password);
 
             if (userFromRepository == null)
