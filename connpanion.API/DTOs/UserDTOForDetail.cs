@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
+using connpanion.API.Models;
 
-namespace connpanion.API.Models
+namespace connpanion.API.DTOs
 {
-    public class User
+    public class UserDTOForDetail
     {
         public int ID { get; set; }
         public string UserName { get; set; }
-        public byte[] Password { get; set; }
-        public byte[] Salt { get; set; }
         public string Gender { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public int Age { get; set; }
         public string KnownAs { get; set; }
         public DateTime Created { get; set; }
         public DateTime LastActive { get; set; }
@@ -20,6 +19,7 @@ namespace connpanion.API.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string Nationality { get; set; }
-        public ICollection<Photograph> Photographs { get; set; }
+        public string PhotoURL { get; set; }
+        public ICollection<PhotographDTOForDetail> Photographs { get; set; }
     }
 }
