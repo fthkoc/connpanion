@@ -20,6 +20,6 @@ namespace connpanion.API.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string Nationality { get; set; }
-        public ICollection<Photograph> Photographs { get; set; }
+        public ICollection<Photograph> Photos { get; set; }
     }
 }

@@ -26,12 +26,12 @@ namespace connpanion.API.Data
 
         public async Task<User> GetUser(int id)
         {
-            return await _dataContext.Users.Include(p => p.Photographs).FirstOrDefaultAsync(u => u.ID == id);
+            return await _dataContext.Users.Include(u => u.Photos).FirstOrDefaultAsync(u => u.ID == id);
         }
 
         public async Task<IEnumerable<User>> GetUsers()
         {
-            return await _dataContext.Users.Include(p => p.Photographs).ToListAsync();
+            return await _dataContext.Users.Include(u => u.Photos).ToListAsync();
         }
 
         public async Task<bool> SaveAll()

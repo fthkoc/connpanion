@@ -11,14 +11,14 @@ namespace connpanion.API.Helpers
         {
             CreateMap<User, UserDTOForList>()
                 .ForMember(dest => dest.PhotoURL, opt => {
-                    opt.MapFrom(src => src.Photographs.FirstOrDefault(p => p.IsMainPhotograph).URL);
+                    opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMainPhotograph).URL);
                 })
                 .ForMember(dest => dest.Age, opt => {
                     opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
                 });
             CreateMap<User, UserDTOForDetail>()
                 .ForMember(dest => dest.PhotoURL, opt => {
-                    opt.MapFrom(src => src.Photographs.FirstOrDefault(p => p.IsMainPhotograph).URL);
+                    opt.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMainPhotograph).URL);
                 })
                 .ForMember(dest => dest.Age, opt => {
                     opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());

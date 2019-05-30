@@ -20,6 +20,6 @@ namespace connpanion.API.DTOs
         public string Country { get; set; }
         public string Nationality { get; set; }
         public string PhotoURL { get; set; }
-        public ICollection<PhotographDTOForDetail> Photographs { get; set; }
+        public ICollection<PhotographDTOForDetail> Photos { get; set; }
     }
 }
