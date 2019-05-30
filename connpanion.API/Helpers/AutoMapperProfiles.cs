@@ -24,6 +24,7 @@ namespace connpanion.API.Helpers
                     opt.ResolveUsing(src => src.DateOfBirth.CalculateAge());
                 });
             CreateMap<Photograph, PhotographDTOForDetail>();
+            CreateMap<UserDTOForUpdate, User>();
         }
     }
 }

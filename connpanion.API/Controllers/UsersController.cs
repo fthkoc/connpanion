@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using connpanion.API.Data;
@@ -32,6 +34,21 @@ namespace connpanion.API.Controllers
         public async Task<IActionResult> GetUser(int id)
         {
             return Ok(_mapper.Map<UserDTOForDetail>(await _repository.GetUser(id)));
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserDTOForUpdate userDTOForUpdate) 
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var userFromRepository = await _repository.GetUser(id);
+            _mapper.Map(userDTOForUpdate, userFromRepository);
+
+            if (await _repository.SaveAll())
+                return NoContent();
+            else
+                throw new Exception($"Updating user {id} failed on save!");
         }
     }
 }
