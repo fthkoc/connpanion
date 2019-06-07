@@ -26,6 +26,8 @@ import { UserListResolver } from './_resolvers/user-list.resolver';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
+import { PhotoEditorComponent } from './users/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -42,7 +44,8 @@ export function tokenGetter() {
       UserDetailComponent,
       ConpanionsComponent,
       UserCardComponent,
-      UserEditComponent
+      UserEditComponent,
+      PhotoEditorComponent
    ],
    imports: [
       BrowserModule,
@@ -58,7 +61,8 @@ export function tokenGetter() {
             blacklistedRoutes: ['localhost:5000/api/auth']
          }
       }),
-      NgxGalleryModule
+      NgxGalleryModule,
+      FileUploadModule
    ],
    providers: [
       ErrorInterceptorProvider,

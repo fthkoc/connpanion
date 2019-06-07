@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using connpanion.API.Models;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,16 @@ namespace connpanion.API.Data
         public async Task<User> GetUser(int id)
         {
             return await _dataContext.Users.Include(u => u.Photos).FirstOrDefaultAsync(u => u.ID == id);
+        }
+
+        public async Task<Photograph> GetPhoto(int id)
+        {
+            return await _dataContext.Photographs.FirstOrDefaultAsync(p => p.ID == id);
+        }
+
+        public async Task<Photograph> GetMainPhotoForUser(int userID)
+        {
+            return await _dataContext.Photographs.Where(u => u.UserID == userID).FirstOrDefaultAsync(p => p.IsMainPhotograph);
         }
 
         public async Task<IEnumerable<User>> GetUsers()

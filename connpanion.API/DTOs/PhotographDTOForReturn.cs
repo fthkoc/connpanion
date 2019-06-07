@@ -1,16 +1,14 @@
 using System;
 
-namespace connpanion.API.Models
+namespace connpanion.API.DTOs
 {
-    public class Photograph
+    public class PhotographDTOForReturn
     {
         public int ID { get; set; }
         public string URL { get; set; }
         public string Description { get; set; }
         public DateTime DateAdded { get; set; }
         public bool IsMainPhotograph { get; set; }
-        public string PublicID { get; set; }
-        public User User { get; set; }
-        public int UserID { get; set; }
+        public string publicID { get; set; }
     }
 }

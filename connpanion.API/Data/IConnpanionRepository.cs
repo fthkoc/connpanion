@@ -11,5 +11,7 @@ namespace connpanion.API.Data
          Task<bool> SaveAll();
          Task<IEnumerable<User>> GetUsers();
          Task<User> GetUser(int id);
+         Task<Photograph> GetPhoto(int id);
+         Task<Photograph> GetMainPhotoForUser(int userID);
     }
 }
