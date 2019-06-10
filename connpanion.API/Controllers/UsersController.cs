@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using AutoMapper;
 using connpanion.API.Data;
 using connpanion.API.DTOs;
+using connpanion.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace connpanion.API.Controllers
 {
+    [ServiceFilter(typeof(LogUserActivity))]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
