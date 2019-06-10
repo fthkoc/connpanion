@@ -27,9 +27,19 @@ namespace connpanion.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery]UserParams userParams)
         {
-            return Ok(_mapper.Map<IEnumerable<UserDTOForList>>(await _repository.GetUsers()));
+            var currentUserID = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            var userFromRepository = await _repository.GetUser(currentUserID);
+            userParams.UserID = currentUserID;
+            if (string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender = userFromRepository.Gender == "male" ? "female" : "male";
+            }
+            var users = await _repository.GetUsers(userParams);
+            var usersToReturn = _mapper.Map<IEnumerable<UserDTOForList>>(users);
+            Response.AddPagination(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
+            return Ok(usersToReturn);
         }
 
         [HttpGet("{id}", Name="GetUser")]
