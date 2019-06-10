@@ -27,6 +27,7 @@ namespace connpanion.API.Helpers
             CreateMap<UserDTOForUpdate, User>();
             CreateMap<Photograph, PhotographDTOForReturn>();
             CreateMap<PhotographDTOForCreate, Photograph>();
+            CreateMap<UserDTOForRegister, User>();
         }
     }
 }

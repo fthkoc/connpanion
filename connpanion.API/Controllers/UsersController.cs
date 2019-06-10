@@ -30,7 +30,7 @@ namespace connpanion.API.Controllers
             return Ok(_mapper.Map<IEnumerable<UserDTOForList>>(await _repository.GetUsers()));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name="GetUser")]
         public async Task<IActionResult> GetUser(int id)
         {
             return Ok(_mapper.Map<UserDTOForDetail>(await _repository.GetUser(id)));

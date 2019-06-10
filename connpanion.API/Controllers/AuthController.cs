@@ -31,16 +31,15 @@ namespace connpanion.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserDTOForRegister userDTOForRegister)
         {
-            // validate request
-
             userDTOForRegister.UserName = userDTOForRegister.UserName.ToLower();
             if (await _authRepository.isUserExists(userDTOForRegister.UserName))
                 return BadRequest("Username already exists.");
             
-            var userToCreate = new User { UserName = userDTOForRegister.UserName };
+            var userToCreate = _mapper.Map<User>(userDTOForRegister);
             var createdUser = await _authRepository.Register(userToCreate, userDTOForRegister.Password);
-
-            return StatusCode(201); //TODO: CreatedAtRoute()
+            var userToReturn = _mapper.Map<UserDTOForDetail>(createdUser);
+           // return StatusCode(201); //TODO: CreatedAtRoute()
+           return CreatedAtRoute("GetUser", new { controller = "Users", id = createdUser.ID }, userToReturn);
         }
 
         [HttpPost("login")]
