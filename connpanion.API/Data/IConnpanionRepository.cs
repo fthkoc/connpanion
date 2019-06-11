@@ -14,5 +14,6 @@ namespace connpanion.API.Data
          Task<User> GetUser(int id);
          Task<Photograph> GetPhoto(int id);
          Task<Photograph> GetMainPhotoForUser(int userID);
+         Task<Like> GetLike(int from, int to);
     }
 }

@@ -21,5 +21,7 @@ namespace connpanion.API.Models
         public string Country { get; set; }
         public string Nationality { get; set; }
         public ICollection<Photograph> Photos { get; set; }
+        public ICollection<Like> Likers { get; set; }
+        public ICollection<Like> Likees { get; set; }
     }
 }

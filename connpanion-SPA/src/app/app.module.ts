@@ -29,6 +29,7 @@ import { UserEditResolver } from './_resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './users/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ConpanionsResolver } from './_resolvers/conpanions.resolver';
 
 export function tokenGetter() {
    return localStorage.getItem('token');
@@ -78,7 +79,8 @@ export function tokenGetter() {
       UserDetailResolver,
       UserListResolver,
       UserEditResolver,
-      PreventUnsavedChanges
+      PreventUnsavedChanges,
+      ConpanionsResolver
    ],
    bootstrap: [
       AppComponent

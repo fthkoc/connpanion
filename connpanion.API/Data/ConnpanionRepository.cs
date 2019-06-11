@@ -48,6 +48,18 @@ namespace connpanion.API.Data
             users = users.Where(u => u.ID != userParams.UserID);
             users = users.Where(u => u.Gender == userParams.Gender);
 
+            if (userParams.Likers)
+            {
+                var userLikers = await GetUserLikes(userParams.UserID, userParams.Likers);
+                users = users.Where(u => userLikers.Contains(u.ID));
+            }
+
+            if (userParams.Likees)
+            {
+                var userLikees = await GetUserLikes(userParams.UserID, userParams.Likers);
+                users = users.Where(u => userLikees.Contains(u.ID));
+            }
+
             var minDateOfBirth = DateTime.Today.AddYears(-userParams.MaxAge);
             var maxDateOfBirth = DateTime.Today.AddYears(-userParams.MinAge);
             users = users.Where(u => u.DateOfBirth <= maxDateOfBirth && u.DateOfBirth > minDateOfBirth);
@@ -68,9 +80,29 @@ namespace connpanion.API.Data
             return await PagedList<User>.CreateAsync(users, userParams.PageNumber, userParams.PageSize);
         }
 
+        private async Task<IEnumerable<int>> GetUserLikes(int userID, bool likers)
+        {
+            var user = await _dataContext.Users
+                .Include(x => x.Likers)
+                .Include(x => x.Likees)
+                .FirstOrDefaultAsync(u => u.ID == userID);
+
+            if (likers)
+            {
+                return user.Likers.Where(u => u.LikeeID == userID).Select(i => i.LikerID);
+            }
+            else
+                return user.Likees.Where(u => u.LikerID == userID).Select(i => i.LikeeID);
+        }
+
         public async Task<bool> SaveAll()
         {
             return await _dataContext.SaveChangesAsync() > 0;
+        }
+
+        public async Task<Like> GetLike(int from, int to)
+        {
+            return await _dataContext.Likes.FirstOrDefaultAsync(u => u.LikerID == from && u.Likee.ID == to);
         }
     }
 }

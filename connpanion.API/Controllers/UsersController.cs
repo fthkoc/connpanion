@@ -6,6 +6,7 @@ using AutoMapper;
 using connpanion.API.Data;
 using connpanion.API.DTOs;
 using connpanion.API.Helpers;
+using connpanion.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,6 +62,28 @@ namespace connpanion.API.Controllers
                 return NoContent();
             else
                 throw new Exception($"Updating user {id} failed on save!");
+        }
+
+        [HttpPost("{from}/like/{to}")]
+        public async Task<IActionResult> LikeUser(int from, int to)
+        {
+            if (from != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
+
+            var like = await _repository.GetLike(from, to);
+            if (like != null)
+                return BadRequest("You already like this user");
+
+            if (await _repository.GetUser(to) == null)
+                return NotFound();
+
+            like = new Like{ LikerID = from, LikeeID = to };
+            _repository.Add<Like>(like);
+            
+            if (await _repository.SaveAll())
+                return Ok();
+
+            return BadRequest("MC Hammer says you can't touch this!");
         }
     }
 }
