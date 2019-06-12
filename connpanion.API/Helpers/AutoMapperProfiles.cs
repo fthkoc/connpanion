@@ -28,6 +28,10 @@ namespace connpanion.API.Helpers
             CreateMap<Photograph, PhotographDTOForReturn>();
             CreateMap<PhotographDTOForCreate, Photograph>();
             CreateMap<UserDTOForRegister, User>();
+            CreateMap<MessageDTOForCreate, Message>().ReverseMap();
+            CreateMap<Message, MessageDTOForReturn>()
+                .ForMember(m => m.SenderPhotoURL, opt => opt.MapFrom(u => u.Sender.Photos.FirstOrDefault(p => p.IsMainPhotograph).URL))
+                .ForMember(m => m.ReceiverPhotoURL, opt => opt.MapFrom(u => u.Receiver.Photos.FirstOrDefault(p => p.IsMainPhotograph).URL));
         }
     }
 }

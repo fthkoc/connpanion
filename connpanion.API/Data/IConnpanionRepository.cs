@@ -15,5 +15,8 @@ namespace connpanion.API.Data
          Task<Photograph> GetPhoto(int id);
          Task<Photograph> GetMainPhotoForUser(int userID);
          Task<Like> GetLike(int from, int to);
+         Task<Message> GetMessage(int id);
+         Task<PagedList<Message>> GetMessagesForUser(MessageParams messageParams);
+         Task<IEnumerable<Message>> GetMessageThread(int sender, int receiver);
     }
 }
