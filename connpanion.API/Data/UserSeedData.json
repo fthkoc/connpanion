@@ -156,7 +156,7 @@
     {
         "Username": "Fatih",
         "Gender": "male",
-        "DateOfBirth": "1998-10-15",
+        "DateOfBirth": "1995-01-31",
         "Password": "password",
         "KnownAs": "Fatih",
         "Created": "2017-02-07",
@@ -164,9 +164,9 @@
         "Introduction": "Consectetur reprehenderit officia cillum cillum cupidatat occaecat consectetur proident voluptate anim. Esse laboris pariatur magna laboris nulla sit reprehenderit elit elit. Voluptate reprehenderit deserunt non laboris incididunt sunt minim. Sunt officia occaecat fugiat fugiat elit. Irure cupidatat adipisicing sunt occaecat proident proident. Ad qui ullamco laborum deserunt ea incididunt ullamco ad.\r\n",
         "LookingFor": "Amet nisi sit magna nostrud culpa esse cillum dolor laborum Lorem labore. Amet magna sit sit quis ipsum ut Lorem qui ut dolor eiusmod. Proident fugiat elit fugiat labore sint. Quis proident nostrud ullamco minim. Enim laboris minim deserunt ad eu consectetur magna. Voluptate voluptate nisi anim deserunt sunt dolor non nostrud nisi labore labore.\r\n",
         "Interests": "Enim mollit laboris adipisicing elit et ea officia deserunt id.",
-        "City": "Avoca",
-        "Country": "Bahamas",
-        "Nationality": "Fiji",
+        "City": "Istanbul",
+        "Country": "Turkey",
+        "Nationality": "Turkish",
         "Photographs": [
         {
             "url": "https://randomuser.me/api/portraits/men/40.jpg",
